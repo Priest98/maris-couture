@@ -45,6 +45,54 @@ export default function Homepage({
 
   const [activeCarouselIndex, setActiveCarouselIndex] = useState(0);
 
+  // Swipe gesture detection state for Collection Carousel
+  const [collTouchStart, setCollTouchStart] = useState<number | null>(null);
+  const [collTouchEnd, setCollTouchEnd] = useState<number | null>(null);
+
+  const handleCollTouchStart = (e: React.TouchEvent) => {
+    setCollTouchEnd(null);
+    setCollTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const handleCollTouchMove = (e: React.TouchEvent) => {
+    setCollTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const handleCollTouchEnd = () => {
+    if (!collTouchStart || !collTouchEnd) return;
+    const distance = collTouchStart - collTouchEnd;
+    if (distance > 50) {
+      handleNextCarousel();
+    } else if (distance < -50) {
+      handlePrevCarousel();
+    }
+  };
+
+  // Swipe gesture detection state for Testimonial Carousel
+  const [testTouchStart, setTestTouchStart] = useState<number | null>(null);
+  const [testTouchEnd, setTestTouchEnd] = useState<number | null>(null);
+
+  const handleTestTouchStart = (e: React.TouchEvent) => {
+    setTestTouchEnd(null);
+    setTestTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const handleTestTouchMove = (e: React.TouchEvent) => {
+    setTestTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const handleTestTouchEnd = () => {
+    if (!testTouchStart || !testTouchEnd) return;
+    const distance = testTouchStart - testTouchEnd;
+    const nextTestimonial = () => setActiveTestimonialIndex((prev) => (prev + 1) % testimonials.length);
+    const prevTestimonial = () => setActiveTestimonialIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+    if (distance > 50) {
+      nextTestimonial();
+    } else if (distance < -50) {
+      prevTestimonial();
+    }
+  };
+
   const carouselItems = [
     {
       tag: "WOMEN'S COLLECTION",
@@ -282,7 +330,12 @@ export default function Homepage({
           </div>
 
           {/* Carousel Layout Box */}
-          <div className="relative w-full flex items-center justify-center overflow-visible py-8">
+          <div 
+            onTouchStart={handleCollTouchStart}
+            onTouchMove={handleCollTouchMove}
+            onTouchEnd={handleCollTouchEnd}
+            className="relative w-full flex items-center justify-center overflow-visible py-8"
+          >
             
             <div className="w-full flex items-center justify-between gap-4 md:gap-8">
               
@@ -316,19 +369,19 @@ export default function Homepage({
                   {/* Left Chevron Float overlay near left flanking boundary */}
                   <button 
                     onClick={(e) => { e.stopPropagation(); handlePrevCarousel(); }}
-                    className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/25 flex items-center justify-center text-white cursor-pointer transition-all duration-300 z-20 shadow-lg"
+                    className="absolute left-4 top-1/2 -translate-y-1/2 w-11 h-11 md:w-10 md:h-10 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/25 flex items-center justify-center text-white cursor-pointer transition-all duration-300 z-20 shadow-lg"
                     title="Previous Campaign"
                   >
-                    <ChevronLeft className="h-4 w-4 stroke-[1.5]" />
+                    <ChevronLeft className="h-5 w-5 md:h-4 md:w-4 stroke-[1.5]" />
                   </button>
 
                   {/* Right Chevron Float overlay near right flanking boundary */}
                   <button 
                     onClick={(e) => { e.stopPropagation(); handleNextCarousel(); }}
-                    className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/25 flex items-center justify-center text-white cursor-pointer transition-all duration-300 z-20 shadow-lg"
+                    className="absolute right-4 top-1/2 -translate-y-1/2 w-11 h-11 md:w-10 md:h-10 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/25 flex items-center justify-center text-white cursor-pointer transition-all duration-300 z-20 shadow-lg"
                     title="Next Campaign"
                   >
-                    <ChevronRight className="h-4 w-4 stroke-[1.5]" />
+                    <ChevronRight className="h-5 w-5 md:h-4 md:w-4 stroke-[1.5]" />
                   </button>
                 </div>
               </div>
@@ -354,18 +407,20 @@ export default function Homepage({
           </div>
 
           {/* Symmetrical dot metrics dash tracking matching mockup */}
-          <div className="flex justify-center items-center space-x-2.5 pt-2 select-none">
+          <div className="flex justify-center items-center space-x-1 pt-2 select-none">
             {carouselItems.map((_, idx) => (
               <button
                 key={idx}
                 onClick={() => setActiveCarouselIndex(idx)}
-                className={`h-1.5 rounded-full transition-all duration-500 cursor-pointer ${
+                className="p-3 cursor-pointer focus:outline-none"
+                aria-label={`Go to slide ${idx + 1}`}
+              >
+                <div className={`h-1.5 rounded-full transition-all duration-500 ${
                   activeCarouselIndex === idx 
                     ? "w-10 bg-white/70" 
                     : "w-4 bg-white/20 hover:bg-white/40"
-                }`}
-                aria-label={`Go to slide ${idx + 1}`}
-              />
+                }`} />
+              </button>
             ))}
           </div>
 
@@ -380,10 +435,13 @@ export default function Homepage({
             <div className="pt-2">
               <button
                 onClick={() => navigateToCategory(carouselItems[activeCarouselIndex].category)}
-                className="group inline-flex items-center space-x-3 text-white font-mono text-[9px] tracking-[0.25em] uppercase cursor-pointer border-b border-white/20 pb-1 hover:border-luxury-accent transition-all duration-500"
+                className="group relative inline-flex items-center space-x-3 text-white font-mono text-[9px] tracking-[0.25em] uppercase cursor-pointer pb-1 hover:text-luxury-accent transition-colors duration-300"
               >
-                <span>{carouselItems[activeCarouselIndex].cta}</span>
-                <ArrowRight className="h-3.5 w-3.5 text-luxury-accent transition-transform group-hover:translate-x-1.5" />
+                <span className="relative">
+                  {carouselItems[activeCarouselIndex].cta}
+                  <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-luxury-accent transition-all duration-300 group-hover:w-full" />
+                </span>
+                <ArrowRight className="h-3.5 w-3.5 text-luxury-accent transition-transform group-hover:translate-x-1.5 duration-300" />
               </button>
             </div>
           </div>
@@ -422,15 +480,15 @@ export default function Homepage({
 
             {/* Design Highlights Badge info */}
             <div className="grid grid-cols-2 md:grid-cols-3 gap-4 pt-4 font-mono text-[8px] uppercase text-white/70">
-              <div className="p-3 border border-white/5 bg-white/[0.01]">
+              <div className="p-3 border border-white/5 bg-white/[0.01] hover:border-luxury-accent/30 hover:bg-white/[0.02] transition-all duration-300">
                 <span className="text-luxury-accent block mb-1">CRAFT TIME</span>
                 <span>450+ Private Hours</span>
               </div>
-              <div className="p-3 border border-white/5 bg-white/[0.01]">
+              <div className="p-3 border border-white/5 bg-white/[0.01] hover:border-luxury-accent/30 hover:bg-white/[0.02] transition-all duration-300">
                 <span className="text-luxury-accent block mb-1">ORIGIN</span>
                 <span>Atelier Lagos, Nigeria</span>
               </div>
-              <div className="p-3 border border-white/5 bg-white/[0.01] col-span-2 md:col-span-1">
+              <div className="p-3 border border-white/5 bg-white/[0.01] hover:border-luxury-accent/30 hover:bg-white/[0.02] transition-all duration-300 col-span-2 md:col-span-1">
                 <span className="text-luxury-accent block mb-1">TEXTILES</span>
                 <span>Prestige Silk & Brocade</span>
               </div>
@@ -442,10 +500,13 @@ export default function Homepage({
                   setCurrentPage("about");
                   window.scrollTo({ top: 0, behavior: "smooth" });
                 }}
-                className="group flex items-center space-x-2 text-white font-mono text-[8.5px] tracking-[0.15em] hover:text-luxury-accent uppercase cursor-pointer"
+                className="group relative inline-flex items-center space-x-2 text-white font-mono text-[8.5px] tracking-[0.15em] hover:text-luxury-accent uppercase cursor-pointer pb-1 transition-colors duration-300"
               >
-                <span>Read Full Manifesto</span>
-                <ArrowRight className="h-3 w-3 text-luxury-accent group-hover:translate-x-1 transition-transform" />
+                <span className="relative">
+                  Read Full Manifesto
+                  <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-luxury-accent transition-all duration-300 group-hover:w-full" />
+                </span>
+                <ArrowRight className="h-3 w-3 text-luxury-accent group-hover:translate-x-1.5 transition-transform duration-300" />
               </button>
             </div>
           </div>
@@ -528,14 +589,19 @@ export default function Homepage({
             {/* Left floating arrow */}
             <button 
               onClick={() => setActiveTestimonialIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length)}
-              className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/5 hover:bg-white/10 hover:scale-105 border border-white/10 flex items-center justify-center text-white cursor-pointer transition-all duration-300 shadow-xl shrink-0"
+              className="w-11 h-11 md:w-12 md:h-12 rounded-full bg-white/5 hover:bg-white/10 hover:scale-105 border border-white/10 flex items-center justify-center text-white cursor-pointer transition-all duration-300 shadow-xl shrink-0"
               title="Previous Review"
             >
               <ChevronLeft className="h-5 w-5 stroke-[1.5]" />
             </button>
 
             {/* Deck of 3 stacked cards */}
-            <div className="relative flex-1 min-h-[260px] md:min-h-[220px] flex items-center justify-center">
+            <div 
+              onTouchStart={handleTestTouchStart}
+              onTouchMove={handleTestTouchMove}
+              onTouchEnd={handleTestTouchEnd}
+              className="relative flex-1 min-h-[260px] md:min-h-[220px] flex items-center justify-center"
+            >
               
               {/* Card 3 (Distant Shadow Layout) */}
               <div className="absolute inset-x-4 bottom-0 top-0 bg-white/[0.015] border border-white/5 rounded-2xl md:rounded-3xl transform translate-y-4 scale-[0.93] rotate-[-1.5deg] opacity-25 blur-[0.2px] pointer-events-none" />
@@ -579,7 +645,7 @@ export default function Homepage({
             {/* Right floating arrow */}
             <button 
               onClick={() => setActiveTestimonialIndex((prev) => (prev + 1) % testimonials.length)}
-              className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/5 hover:bg-white/10 hover:scale-105 border border-white/10 flex items-center justify-center text-white cursor-pointer transition-all duration-300 shadow-xl shrink-0"
+              className="w-11 h-11 md:w-12 md:h-12 rounded-full bg-white/5 hover:bg-white/10 hover:scale-105 border border-white/10 flex items-center justify-center text-white cursor-pointer transition-all duration-300 shadow-xl shrink-0"
               title="Next Review"
             >
               <ChevronRight className="h-5 w-5 stroke-[1.5]" />
@@ -590,7 +656,7 @@ export default function Homepage({
           {/* Symmetrical Action Section below the card slider match matching mockup exactly */}
           <div className="text-center pt-6 space-y-6 relative z-10 select-none">
             <p className="font-mono text-[10px] tracking-[0.2em] uppercase text-white/40">
-              Join 500+ premium sovereigns who track their custom sizing files thither.
+              JOIN 500+ PREMIUM SOVEREIGNS WHO TRUST US WITH THEIR CUSTOM SIZING PROFILES.
             </p>
             
             <motion.button 
@@ -616,12 +682,15 @@ export default function Homepage({
         transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
         className="py-32 px-6 md:px-12 lg:px-24 bg-[#0a0a0a] relative border-b border-white/5 overflow-hidden"
       >
+        {/* Large background decorative "MC" monogram (absolute background, z-0) */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none select-none font-serif italic text-[28vw] text-luxury-accent opacity-[0.04] leading-none z-0">
+          MC
+        </div>
 
-        
         <div className="max-w-6xl mx-auto relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-stretch text-left">
           
-          {/* Left Column: Heritage & Creative Direction Overview */}
-          <div className="lg:col-span-5 relative overflow-hidden rounded-2xl border border-white/10 p-8 md:p-12 min-h-[480px] lg:min-h-auto bg-cover bg-center flex flex-col justify-between" style={{ backgroundImage: `linear-gradient(to bottom, rgba(14, 11, 10, 0.90), rgba(8, 8, 8, 0.97)), url('/image/SaveClip.App_703433599_17995688906958075_3604819135559276349_n.jpg')` }}>
+          {/* Left Column: Heritage & Creative Direction Overview (z-10 to stay on top of z-0 MC) */}
+          <div className="lg:col-span-5 relative overflow-hidden rounded-2xl border border-white/10 p-8 md:p-12 min-h-[480px] lg:min-h-auto bg-cover bg-center flex flex-col justify-between z-10" style={{ backgroundImage: `linear-gradient(to bottom, rgba(14, 11, 10, 0.90), rgba(8, 8, 8, 0.97)), url('/image/SaveClip.App_703433599_17995688906958075_3604819135559276349_n.jpg')` }}>
 
             
             <div className="space-y-16 relative z-10">
@@ -638,16 +707,11 @@ export default function Homepage({
                   Couture <br />
                   Experience
                 </h3>
-                
-                {/* Monogram MC Signature */}
-                <div className="font-serif italic text-3xl font-extralight text-luxury-accent/85 tracking-widest pl-1">
-                  MC
-                </div>
               </div>
               
-              {/* Context Statement */}
+              {/* Context Statement (resolves duplicate text issue) */}
               <p className="font-serif italic text-xs md:text-sm text-luxury-accent/70 leading-relaxed max-w-sm font-light">
-                Every creation begins with a conversation. Schedule your private consultation and let us design an experience as exceptional as you are.
+                Your journey into haute couture begins here. Schedule your private consultation to collaborate directly with our design team and bring your vision to life.
               </p>
             </div>
 
@@ -663,8 +727,8 @@ export default function Homepage({
             </div>
           </div>
 
-          {/* Right Column: Interactive Haute Couture Consult System Card */}
-          <div className="lg:col-span-7 bg-[#101010] border border-white/5 rounded-2xl p-6 md:p-10 relative overflow-hidden flex flex-col justify-between shadow-2xl">
+          {/* Right Column: Interactive Haute Couture Consult System Card (z-10 to stay on top of z-0 MC) */}
+          <div className="lg:col-span-7 bg-[#101010] border border-white/5 rounded-2xl p-6 md:p-10 relative overflow-hidden flex flex-col justify-between shadow-2xl z-10">
             <AnimatePresence mode="wait">
               {!consultSuccess ? (
                 <motion.form 
@@ -673,7 +737,7 @@ export default function Homepage({
                   className="space-y-8"
                 >
                   {/* Grid Fields */}
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-5">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-7 md:gap-y-5">
                     
                     {/* Your Name */}
                     <div className="space-y-2">
@@ -908,7 +972,7 @@ export default function Homepage({
           <div className="w-12 h-px bg-white/20 mx-auto" />
 
           <p className="font-serif italic text-sm sm:text-base md:text-lg text-white/70 max-w-xl mx-auto leading-relaxed">
-            "Fashions disappear. Styles dissolve. But the confidence of a perfectly structured silken garment sewn beautifully by hand lives forever in memorythither."
+            "Fashions disappear. Styles dissolve. But the confidence of a perfectly structured silken garment sewn beautifully by hand lives forever."
           </p>
 
           <div className="pt-4 flex flex-col sm:flex-row gap-4 justify-center items-center">
