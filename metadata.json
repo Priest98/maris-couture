@@ -1,0 +1,6 @@
+{
+  "name": "Maris Couture - Luxury Fashion Experience",
+  "description": "A premium luxury fashion showcase for Maris Couture, featuring handcrafted custom creations, bridal & occasion wear, ready-to-wear, and bespoke tailoring.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
