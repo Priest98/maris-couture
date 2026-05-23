@@ -21,7 +21,7 @@ export default function AboutPage() {
               ABOUT THE MANIFEST // COGNITIONS
             </span>
           </div>
-          <h2 className="font-serif text-3xl md:text-5xl tracking-wide text-luxury-accent uppercase font-light">
+          <h2 className="font-serif text-3xl md:text-6xl tracking-tight text-luxury-accent uppercase font-light">
             THE PHILOSOPHY OF MARIS COUTURE
           </h2>
         </motion.div>

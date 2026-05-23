@@ -69,7 +69,7 @@ export default function FAQPage() {
             </span>
             <div className="h-[0.5px] w-12 bg-luxury-accent/30 origin-left" />
           </div>
-          <h2 className="font-serif text-3xl md:text-5xl tracking-wide text-luxury-accent uppercase font-light">
+          <h2 className="font-serif text-3xl md:text-6xl tracking-tight text-luxury-accent uppercase font-light">
             FAQ INDEX
           </h2>
           <p className="font-serif italic text-xs text-white/50 max-w-sm mx-auto leading-relaxed font-light">

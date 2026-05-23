@@ -43,7 +43,7 @@ export default function ContactPage() {
                 CHANNELS // SATELLITE
               </span>
             </div>
-            <h2 className="font-serif text-3xl md:text-5xl tracking-wide text-luxury-accent uppercase font-light">
+            <h2 className="font-serif text-3xl md:text-6xl tracking-tight text-luxury-accent uppercase font-light">
               CONNECT THITHER
             </h2>
             <p className="font-serif italic text-xs text-white/50 leading-relaxed font-light">

@@ -62,7 +62,7 @@ export default function LookbookPage() {
             </span>
             <div className="h-[0.5px] w-12 bg-luxury-accent/30 origin-left" />
           </div>
-          <h2 className="font-serif text-3xl md:text-5xl tracking-[0.2em] font-light text-luxury-accent uppercase">
+          <h2 className="font-serif text-3xl md:text-6xl tracking-tight font-light text-luxury-accent uppercase">
             L'ÉCLIPSE
           </h2>
           <p className="font-serif italic text-xs text-white/50 leading-relaxed font-light">

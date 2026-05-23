@@ -468,16 +468,16 @@ export default function Homepage({
                 CREATIVE DIRECTION CORE
               </span>
             </div>
-            <h3 className="font-serif text-3xl sm:text-4xl lg:text-5xl text-white tracking-wide uppercase font-light leading-tight">
+            <h3 className="font-serif text-3xl sm:text-4xl lg:text-6xl text-white tracking-tight uppercase font-light leading-tight">
               The Vision Behind <br />
               <span className="italic text-[#bc9c74]">Maris Couture</span>
             </h3>
             
-            <p className="font-serif italic text-base md:text-lg text-white/80 leading-relaxed font-light">
+            <p className="font-serif italic text-lg md:text-xl text-white/80 leading-relaxed font-light">
               "Every garment begins with a conversation. We craft bespoke shields of confidence, designed to capture absolute majesty and individuality."
             </p>
 
-            <p className="text-sm sm:text-base text-white/50 leading-relaxed tracking-wide font-light">
+            <p className="text-base md:text-lg text-white/50 leading-relaxed tracking-wide font-light">
               Founded in 2026 by Creative Director Maris, the house blends the majestic weight of traditional African heritage with modern, minimalist geometries. We do not construct quick, disposable trends. Every seam, bead, and structural layer is deliberately handcrafted inside our Lagos atelier using premium silks, French lace, and gold bullion details to command absolute presence.
             </p>
 
@@ -579,7 +579,7 @@ export default function Homepage({
               <div className="h-[0.5px] w-12 bg-white/20 origin-left" />
             </div>
             
-            <h3 className="font-serif text-3xl sm:text-4.5xl md:text-5xl text-white tracking-tight leading-tight uppercase font-light">
+            <h3 className="font-serif text-3xl sm:text-4.5xl lg:text-6xl text-white tracking-tight leading-tight uppercase font-light">
               Loved by sovereigns <br className="sm:hidden" />
               and clients worldwide.
             </h3>
@@ -622,7 +622,7 @@ export default function Homepage({
                 <span className="font-serif italic text-3xl leading-none md:text-4xl text-luxury-accent/30 block -mb-2">“</span>
 
                 {/* Main Quote Statement */}
-                <p className="font-serif italic text-sm sm:text-base md:text-lg leading-relaxed text-white/90">
+                <p className="font-serif italic text-base md:text-xl leading-relaxed text-white/90">
                   {testimonials[activeTestimonialIndex].quote}
                 </p>
 
@@ -708,7 +708,7 @@ export default function Homepage({
 
               {/* Majestic Editorial Title */}
               <div className="space-y-6">
-                <h3 className="font-serif text-[clamp(28px,4.5vw,48px)] leading-[1.05] text-[#eae6df] tracking-wide font-light uppercase">
+                <h3 className="font-serif text-3xl sm:text-4.5xl lg:text-6xl leading-[1.05] text-[#eae6df] tracking-tight font-light uppercase">
                   Book Your <br />
                   Couture <br />
                   Experience
@@ -716,7 +716,7 @@ export default function Homepage({
               </div>
               
               {/* Context Statement (resolves duplicate text issue) */}
-              <p className="font-serif italic text-xs md:text-sm text-luxury-accent/70 leading-relaxed max-w-sm font-light">
+              <p className="font-serif italic text-lg md:text-xl text-luxury-accent/70 leading-relaxed max-w-sm font-light">
                 Your journey into haute couture begins here. Schedule your private consultation to collaborate directly with our design team and bring your vision to life.
               </p>
             </div>
