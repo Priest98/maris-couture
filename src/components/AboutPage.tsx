@@ -13,15 +13,17 @@ export default function AboutPage() {
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-          className="flex flex-col space-y-3"
+          className="flex flex-col space-y-3 select-none"
         >
-          <span className="font-mono text-[8px] tracking-[0.4em] text-white/40 block uppercase">
-            ABOUT THE MANIFEST // COGNITIONS
-          </span>
+          <div className="flex items-center gap-4">
+            <div className="h-[0.5px] w-12 bg-luxury-accent/30 origin-left" />
+            <span className="font-mono text-[9px] tracking-[0.4em] text-white/40 block uppercase">
+              ABOUT THE MANIFEST // COGNITIONS
+            </span>
+          </div>
           <h2 className="font-serif text-3xl md:text-5xl tracking-wide text-luxury-accent uppercase font-light">
             THE PHILOSOPHY OF MARIS COUTURE
           </h2>
-          <div className="w-16 h-px bg-white/25 mt-2" />
         </motion.div>
 
         {/* Section 1: The Vision & Founder's Letter */}

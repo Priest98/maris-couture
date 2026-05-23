@@ -52,10 +52,13 @@ export default function ShopPage({ onSelectItem }: { onSelectItem: (item: Collec
     <div className="relative pt-24 pb-20 px-6 md:px-12 w-full max-w-7xl mx-auto z-10 selection:bg-luxury-accent selection:text-luxury-black">
       
       {/* Page Header */}
-      <div className="flex flex-col space-y-4 mb-12">
-        <span className="font-mono text-[8px] tracking-[0.4em] text-white/40 block uppercase">
-          INDEX // ARTIFACT EXPLORER
-        </span>
+      <div className="flex flex-col space-y-4 mb-12 select-none">
+        <div className="flex items-center gap-4">
+          <div className="h-[0.5px] w-12 bg-luxury-accent/30 origin-left" />
+          <span className="font-mono text-[9px] tracking-[0.4em] text-white/40 block uppercase">
+            INDEX // ARTIFACT EXPLORER
+          </span>
+        </div>
         <h2 className="font-serif text-3xl md:text-5xl tracking-wide text-luxury-accent uppercase font-light">
           THE FLAGSHIP DIGITAL SHOWROOM
         </h2>

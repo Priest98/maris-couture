@@ -61,14 +61,17 @@ export default function FAQPage() {
       <div className="max-w-3xl mx-auto px-6 md:px-12 space-y-12 relative z-10 font-sans">
         
         {/* Header */}
-        <div className="text-center space-y-3">
-          <span className="font-mono text-[8px] tracking-[0.4em] text-white/40 block uppercase">
-            PROTOCOL // EXPLORATIVE
-          </span>
+        <div className="text-center space-y-3 select-none">
+          <div className="flex items-center gap-4 justify-center">
+            <div className="h-[0.5px] w-12 bg-luxury-accent/30 origin-right" />
+            <span className="font-mono text-[9px] tracking-[0.4em] text-white/40 block uppercase">
+              PROTOCOL // EXPLORATIVE
+            </span>
+            <div className="h-[0.5px] w-12 bg-luxury-accent/30 origin-left" />
+          </div>
           <h2 className="font-serif text-3xl md:text-5xl tracking-wide text-luxury-accent uppercase font-light">
             FAQ INDEX
           </h2>
-          <div className="w-12 h-px bg-white/20 mx-auto mt-2" />
           <p className="font-serif italic text-xs text-white/50 max-w-sm mx-auto leading-relaxed font-light">
             Sartorial guidelines, care specifications, and complimentary transit protocols compiled by our team.
           </p>

@@ -462,12 +462,15 @@ export default function Homepage({
           
           {/* Narrative Block */}
           <div className="lg:col-span-7 space-y-6 text-left">
-            <span className="font-mono text-[7px] tracking-[0.4em] text-luxury-accent/50 block uppercase">
-              CREATIVE DIRECTION CORE
-            </span>
+            <div className="flex items-center gap-4 mb-4 select-none">
+              <div className="h-[0.5px] w-12 bg-luxury-accent/30 origin-left" />
+              <span className="font-mono text-[9px] tracking-[0.4em] text-[#bc9c74] uppercase block font-semibold">
+                CREATIVE DIRECTION CORE
+              </span>
+            </div>
             <h3 className="font-serif text-3xl sm:text-4xl lg:text-5xl text-white tracking-wide uppercase font-light leading-tight">
               The Vision Behind <br />
-              <span className="italic text-luxury-accent">Maris Couture</span>
+              <span className="italic text-[#bc9c74]">Maris Couture</span>
             </h3>
             
             <p className="font-serif italic text-base md:text-lg text-white/80 leading-relaxed font-light">
@@ -567,10 +570,13 @@ export default function Homepage({
 
         <div className="max-w-4xl mx-auto space-y-12 relative z-10">
           
-          <div className="flex flex-col items-center space-y-4 select-none">
-            {/* BADGE Capsule matched exactly to the mockup */}
-            <div className="inline-block px-4 py-1.5 border border-white/10 rounded-full bg-white/5 text-[#eae6df]/80 font-mono text-[8px] uppercase tracking-[0.3em]">
-              testimonials
+          <div className="flex flex-col items-center space-y-4 select-none mb-12">
+            <div className="flex items-center gap-4 justify-center">
+              <div className="h-[0.5px] w-12 bg-white/20 origin-right" />
+              <span className="font-mono text-[9px] tracking-[0.4em] text-[#bc9c74] uppercase block font-semibold">
+                TESTIMONIALS
+              </span>
+              <div className="h-[0.5px] w-12 bg-white/20 origin-left" />
             </div>
             
             <h3 className="font-serif text-3xl sm:text-4.5xl md:text-5xl text-white tracking-tight leading-tight uppercase font-light">

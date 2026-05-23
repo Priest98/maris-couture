@@ -54,14 +54,17 @@ export default function LookbookPage() {
       <div className="relative z-10 max-w-6xl mx-auto px-6 md:px-12 space-y-24 md:space-y-40">
         
         {/* Lookbook Title */}
-        <div className="text-center space-y-3 max-w-xl mx-auto">
-          <span className="font-mono text-[8px] tracking-[0.5em] text-white/40 block uppercase">
-            SARTORIAL CAMPAIGN NO. 01
-          </span>
+        <div className="text-center space-y-3 max-w-xl mx-auto select-none">
+          <div className="flex items-center gap-4 justify-center">
+            <div className="h-[0.5px] w-12 bg-luxury-accent/30 origin-right" />
+            <span className="font-mono text-[9px] tracking-[0.5em] text-white/40 block uppercase">
+              SARTORIAL CAMPAIGN NO. 01
+            </span>
+            <div className="h-[0.5px] w-12 bg-luxury-accent/30 origin-left" />
+          </div>
           <h2 className="font-serif text-3xl md:text-5xl tracking-[0.2em] font-light text-luxury-accent uppercase">
             L'ÉCLIPSE
           </h2>
-          <div className="w-12 h-px bg-white/20 mx-auto" />
           <p className="font-serif italic text-xs text-white/50 leading-relaxed font-light">
             An investigation into spatial garment geometry. A luxurious exploration of shadow, form, and pure physical silence. Designed in isolation.
           </p>
