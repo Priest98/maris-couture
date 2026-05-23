@@ -75,7 +75,7 @@ export default function Navigation({
             <h1 className="font-serif text-lg md:text-xl tracking-[0.25em] text-luxury-accent/90 group-hover:text-luxury-accent transition-colors duration-1000 uppercase font-medium">
               Maris Couture
             </h1>
-            <span className="font-mono text-[7px] tracking-[0.3em] text-luxury-dim/60 group-hover:text-luxury-accent/70 transition-colors duration-1000 mt-1 uppercase">
+            <span className="font-mono text-[9px] md:text-[10px] tracking-[0.3em] text-luxury-dim/60 group-hover:text-luxury-accent/70 transition-colors duration-1000 mt-1 uppercase">
               bespoke.and.ready.to.wear
             </span>
           </div>

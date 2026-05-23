@@ -188,7 +188,7 @@ export default function Homepage({
     <div className="w-full relative bg-luxury-black text-luxury-accent selection:bg-luxury-accent selection:text-luxury-black font-sans leading-relaxed overflow-hidden">
       
       {/* 1. HERO SECTION */}
-      <section className="relative min-h-[90vh] w-full flex flex-col justify-center items-center px-6 md:px-12 lg:px-24 py-32 overflow-hidden border-b border-white/5 select-none md:flex-row">
+      <section className="relative min-h-[90vh] w-full flex flex-col justify-center items-center px-6 md:px-12 lg:px-24 py-20 md:py-32 overflow-hidden border-b border-white/5 select-none md:flex-row">
         
         {/* Background Widescreen Cinematic Image (Slowly zooming) */}
         <div className="absolute inset-0 z-0 scale-105 animate-[pulse_12s_ease-in-out_infinite] opacity-40">
@@ -202,7 +202,7 @@ export default function Homepage({
           <div className="absolute inset-0 bg-radial-[circle_at_50%_50%] from-transparent via-transparent to-luxury-black/90" />
         </div>
 
-        <div className="max-w-4xl mx-auto text-center relative z-10 flex flex-col items-center space-y-6">
+        <div className="max-w-4xl mx-auto text-center relative z-10 flex flex-col items-center space-y-5 md:space-y-6">
           
           {/* Epic Main Header Title */}
           <div className="space-y-2">
@@ -222,7 +222,7 @@ export default function Homepage({
             initial={{ opacity: 0 }}
             animate={{ opacity: 0.8 }}
             transition={{ duration: 1.5, delay: 0.6 }}
-            className="font-serif italic text-sm sm:text-base md:text-lg text-white/75 max-w-xl mx-auto leading-relaxed font-light"
+            className="font-serif italic text-base sm:text-lg md:text-xl text-white/75 max-w-xl mx-auto leading-relaxed font-light"
           >
             Crafting timeless pieces for women and men who appreciate luxury, confidence, and impeccable style.
           </motion.p>
@@ -232,13 +232,13 @@ export default function Homepage({
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.2, delay: 0.8 }}
-            className="w-full pt-4 flex flex-col sm:flex-row justify-center items-center gap-4"
+            className="w-full max-w-[280px] sm:max-w-none pt-4 flex flex-col sm:flex-row justify-center items-center gap-3 sm:gap-4"
           >
             <motion.button
               whileHover={{ scale: 1.02, y: -2 }}
               whileTap={{ scale: 0.98 }}
               onClick={() => navigateToCategory("All")}
-              className="group relative w-full sm:w-auto px-8 py-4 bg-luxury-accent text-luxury-black font-sans text-[11px] tracking-[0.18em] uppercase font-semibold hover:bg-white transition-all duration-500 shadow-xl cursor-pointer"
+              className="group relative w-full sm:w-auto px-8 py-4 bg-luxury-accent text-luxury-black font-sans text-xs md:text-sm tracking-[0.18em] uppercase font-semibold hover:bg-white transition-all duration-500 shadow-xl cursor-pointer"
             >
               Explore Collections
               <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-luxury-black transition-all group-hover:w-full" />
@@ -248,7 +248,7 @@ export default function Homepage({
               whileHover={{ scale: 1.02, y: -2 }}
               whileTap={{ scale: 0.98 }}
               onClick={scrollToBooking}
-              className="w-full sm:w-auto px-8 py-4 border border-white/20 bg-black/40 hover:border-white hover:bg-white/10 text-white font-sans text-[11px] tracking-[0.18em] uppercase font-semibold transition-all duration-500 cursor-pointer"
+              className="w-full sm:w-auto px-8 py-4 border border-white/20 bg-black/40 hover:border-white hover:bg-white/10 text-white font-sans text-xs md:text-sm tracking-[0.18em] uppercase font-semibold transition-all duration-500 cursor-pointer"
             >
               Book Consultation
             </motion.button>
@@ -412,16 +412,12 @@ export default function Homepage({
               <span className="italic text-luxury-accent">Maris Couture</span>
             </h3>
             
-            <p className="font-serif italic text-sm md:text-base text-white/75 leading-relaxed font-light">
-              "Every garment begins with a conversation. We established Maris Couture to craft bespoke shields of confidence, designed to capture absolute majesty and individuality."
+            <p className="font-serif italic text-base md:text-lg text-white/80 leading-relaxed font-light">
+              "Every garment begins with a conversation. We craft bespoke shields of confidence, designed to capture absolute majesty and individuality."
             </p>
 
-            <p className="text-xs md:text-sm text-white/50 leading-relaxed tracking-wider font-light">
-              Founded in 2026 by Creative Director Maris, the house blends the majestic weight of traditional African culture with modern, minimalist geometries. We do not construct quick, disposably assembled trends. Every seam, bead, and structural layer is deliberately developed over many weeks within our Lagos workspace. 
-            </p>
-
-            <p className="text-xs md:text-sm text-white/50 leading-relaxed tracking-wider font-light">
-              By implementing premium imported silks, intricate French Chantilly lace, and metallic bullion wire embroidery, we create high-luxury silhouettes that don't merely represent apparel, but command absolute presence and authority.
+            <p className="text-sm sm:text-base text-white/50 leading-relaxed tracking-wide font-light">
+              Founded in 2026 by Creative Director Maris, the house blends the majestic weight of traditional African heritage with modern, minimalist geometries. We do not construct quick, disposable trends. Every seam, bead, and structural layer is deliberately handcrafted inside our Lagos atelier using premium silks, French lace, and gold bullion details to command absolute presence.
             </p>
 
             {/* Design Highlights Badge info */}
@@ -554,7 +550,7 @@ export default function Homepage({
                 <span className="font-serif italic text-3xl leading-none md:text-4xl text-luxury-accent/30 block -mb-2">“</span>
 
                 {/* Main Quote Statement */}
-                <p className="font-serif italic text-xs sm:text-sm md:text-base leading-relaxed text-white/90">
+                <p className="font-serif italic text-sm sm:text-base md:text-lg leading-relaxed text-white/90">
                   {testimonials[activeTestimonialIndex].quote}
                 </p>
 
@@ -567,10 +563,10 @@ export default function Homepage({
                     referrerPolicy="no-referrer"
                   />
                   <div className="space-y-0.5">
-                    <h4 className="font-serif text-[11px] md:text-xs text-white font-medium uppercase tracking-widest">
+                    <h4 className="font-serif text-xs md:text-sm text-white font-medium uppercase tracking-widest">
                       {testimonials[activeTestimonialIndex].author}
                     </h4>
-                    <p className="font-mono text-[7px] text-white/40 tracking-widest uppercase">
+                    <p className="font-mono text-[9px] text-white/40 tracking-widest uppercase">
                       {testimonials[activeTestimonialIndex].role} &nbsp;•&nbsp; <span className="text-luxury-accent font-semibold">{testimonials[activeTestimonialIndex].press}</span>
                     </p>
                   </div>
@@ -593,7 +589,7 @@ export default function Homepage({
 
           {/* Symmetrical Action Section below the card slider match matching mockup exactly */}
           <div className="text-center pt-6 space-y-6 relative z-10 select-none">
-            <p className="font-mono text-[8px] tracking-[0.2em] uppercase text-white/40">
+            <p className="font-mono text-[10px] tracking-[0.2em] uppercase text-white/40">
               Join 500+ premium sovereigns who track their custom sizing files thither.
             </p>
             
@@ -601,7 +597,7 @@ export default function Homepage({
               whileHover={{ scale: 1.02, y: -1 }}
               whileTap={{ scale: 0.98 }}
               onClick={scrollToBooking}
-              className="inline-flex px-8 py-3.5 bg-luxury-accent hover:bg-white text-luxury-black font-medium font-mono text-[8px] tracking-[0.25em] uppercase rounded transition-all duration-500 cursor-pointer shadow-[0_4px_20px_rgba(188,163,116,0.15)]"
+              className="inline-flex px-8 py-3.5 bg-luxury-accent hover:bg-white text-luxury-black font-medium font-mono text-[10px] tracking-[0.25em] uppercase rounded transition-all duration-500 cursor-pointer shadow-[0_4px_20px_rgba(188,163,116,0.15)]"
             >
               Get Started Now
             </motion.button>
